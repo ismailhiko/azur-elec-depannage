@@ -961,6 +961,24 @@ ul { list-style: none; }
   opacity: 0.85;
 }
 
+.contact-action--whatsapp .contact-action__icon {
+  background: rgba(37, 211, 102, 0.2);
+  color: #25d366;
+}
+
+.contact-action--whatsapp:hover {
+  border-color: rgba(37, 211, 102, 0.5);
+}
+
+.pricing__footnote a {
+  color: var(--azure-light);
+  text-decoration: underline;
+}
+
+.pricing__footnote a:hover {
+  color: var(--yellow);
+}
+
 /* Footer */
 .footer {
   background: var(--gray-900);
