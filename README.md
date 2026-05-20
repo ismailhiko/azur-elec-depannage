@@ -13,7 +13,17 @@ Ouvrir http://localhost:8080
 
 ## Publication GitHub Pages
 
-Le workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publie automatiquement le contenu de `site/` à chaque push sur `main`.
+Le workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publie automatiquement le contenu de `site/` à chaque push sur `main` (le site public est dans `site/`, pas à la racine du dépôt).
+
+### Option rapide (GitHub CLI)
+
+```powershell
+cd "c:\Users\isham\Documents\jean meca"
+gh auth login
+.\publish-github.ps1
+```
+
+### Option manuelle
 
 1. Créer un dépôt vide sur GitHub (sans README).
 2. Lier le dépôt local et pousser :
