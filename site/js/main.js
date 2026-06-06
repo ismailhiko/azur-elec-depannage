@@ -12,6 +12,10 @@
 
   /* Header scroll */
   function onScroll() {
+    if (!header) {
+      return;
+    }
+
     if (window.scrollY > 20) {
       header.classList.add('header--scrolled');
     } else {
@@ -31,6 +35,17 @@
       nav.classList.toggle('open');
     });
 
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape' || !nav.classList.contains('open')) {
+        return;
+      }
+
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Ouvrir le menu');
+      nav.classList.remove('open');
+      burger.focus();
+    });
+
     nav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         burger.setAttribute('aria-expanded', 'false');
@@ -45,8 +60,9 @@
     '.card, .pricing__main, .pricing__row, .examples__item, .feature, .contact-map, .contact-action, .section__header'
   );
 
-  revealEls.forEach(function (el) {
+  revealEls.forEach(function (el, index) {
     el.classList.add('reveal');
+    el.style.setProperty('--reveal-delay', Math.min(index % 6, 5) * 70 + 'ms');
   });
 
   if ('IntersectionObserver' in window) {
@@ -68,6 +84,20 @@
   } else {
     revealEls.forEach(function (el) {
       el.classList.add('visible');
+    });
+  }
+
+  /* Subtle hero pointer light */
+  const hero = document.querySelector('.hero');
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (hero && !motionQuery.matches) {
+    hero.addEventListener('pointermove', function (event) {
+      const rect = hero.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width) * 100;
+      const y = ((event.clientY - rect.top) / rect.height) * 100;
+      hero.style.setProperty('--hero-x', x.toFixed(2) + '%');
+      hero.style.setProperty('--hero-y', y.toFixed(2) + '%');
     });
   }
 

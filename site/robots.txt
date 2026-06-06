@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ismailhiko.github.io/azur-elec-depannage/sitemap.xml
